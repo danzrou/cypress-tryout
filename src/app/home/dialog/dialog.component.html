@@ -1,0 +1,10 @@
+<smp-dialog-primary class="dialog" (dialogClosed)="close()">
+    <smp-dialog-primary-header textPrimary="Hello"></smp-dialog-primary-header>
+    <div smp-dialog-content>
+        <div class="name">Hello {{name}}</div>
+    </div>
+    <smp-dialog-footer btnPrimary="Ok"
+                       btnSecondary="Cancel"
+                       (secondaryClicked)="close()"
+                       (primaryClicked)="close({success: true})"></smp-dialog-footer>
+</smp-dialog-primary>

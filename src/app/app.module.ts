@@ -1,15 +1,24 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { SmpButtonModule, SmpInputModule } from '@siemplify/ui';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SmpButtonModule, SmpDialogModule, SmpInputModule, SmpOverlayModule } from '@siemplify/ui';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, SmpButtonModule, SmpInputModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    SmpButtonModule,
+    SmpInputModule,
+    SmpOverlayModule.forRoot(),
+    SmpDialogModule.forRoot()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,1 +1,11 @@
-<p>home works!</p>
+<smp-select class="select" (selectedChange)="value = $event">
+    <smp-select-option *ngFor="let option of options"
+                       [value]="option.value">{{option.label}}</smp-select-option>
+</smp-select>
+
+<pre>{{value}}</pre>
+
+<hr>
+
+<button smpButton (click)="openDialog('Dan')" class="dialog-btn">Open Dan</button>
+<button smpButton (click)="openDialog('Jeff')" class="dialog-btn">Open Jeff</button>
