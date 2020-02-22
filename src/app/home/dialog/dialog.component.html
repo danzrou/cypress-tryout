@@ -1,7 +1,7 @@
-<smp-dialog-primary class="dialog" (dialogClosed)="close()">
+<smp-dialog-primary data-cy="dialog" (dialogClosed)="close()">
     <smp-dialog-primary-header textPrimary="Hello"></smp-dialog-primary-header>
     <div smp-dialog-content>
-        <div class="name">Hello {{name}}</div>
+        <div class="name" data-cy="greeting">Hello {{name}}</div>
     </div>
     <smp-dialog-footer btnPrimary="Ok"
                        btnSecondary="Cancel"

@@ -1,4 +1,4 @@
-import { getDialog, getDialogBtn, getSelect } from '../../support/home/home.po';
+import { getDialog, getDialogBtn, getDialogGreeting, getSelect } from '../../support/home/home.po';
 
 describe('home', () => {
   beforeEach(() => cy.visit('home'));
@@ -27,21 +27,35 @@ describe('home', () => {
 
   describe('dialog', () => {
     it('should open', () => {
-      getDialogBtn().first().click();
+      getDialogBtn()
+        .first()
+        .click();
       getDialog().should('be.visible');
     });
 
     it('should have defined name', () => {
       getDialogBtn()
-        .eq(0)
+        .eq(1)
         .invoke('text')
         .then(text => {
           const name = (text as any).split(' ')[1];
           getDialogBtn()
-            .first()
+            .eq(1)
             .click();
-          getDialog().get('.name').should('contain.text', `Hello ${name}`);
+
+          getDialogGreeting()
+            .should('contain.text', `Hello ${name}`)
+            .should('have.class', 'name');
         });
+    });
+
+    it('should close after click ok', () => {
+      getDialogBtn()
+        .first()
+        .click();
+      getDialog().should('be.visible');
+      getDialog().within(() => cy.contains('Ok').click());
+      getDialog().should('not.be.visible');
     });
   });
 });
