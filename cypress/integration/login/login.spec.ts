@@ -1,3 +1,4 @@
+import { setAndGetFixture } from '../../support/core/fixture.helpers';
 import {
   getHeader,
   getLoginError,
@@ -6,13 +7,16 @@ import {
   getUserField
 } from '../../support/login/login.po';
 
+interface UserForm {
+  user: string;
+  password: string;
+}
+
 describe('login', () => {
   beforeEach(() => cy.visit('login'));
 
   it('submit() - invalid form', () => {
-    cy.fixture('login/login-invalid').as('invalidForm');
-
-    cy.get<{ user: string; password: string }>('@invalidForm').then(({ user, password }) => {
+    setAndGetFixture<UserForm>('login/login-invalid', 'invalidForm').then(({ user, password }) => {
       getUserField().type(user);
       getPassField().type(password);
       getSubmitBtn().click();
@@ -21,8 +25,7 @@ describe('login', () => {
   });
 
   it('submit() - valid form, should navigate to home', () => {
-    cy.fixture('login/login-valid').as('validForm');
-    cy.get<{ user: string; password: string }>('@validForm').then(({ user, password }) => {
+    setAndGetFixture<UserForm>('login/login-valid', 'validForm').then(({ user, password }) => {
       getUserField().type(user);
       getPassField().type(password);
       getSubmitBtn().click();
@@ -42,10 +45,9 @@ describe('login', () => {
     getPassField().clear();
     getPassField().should('have.class', 'ng-invalid');
 
-    cy.get('.error').then(el => {
-      const passError = el.get()[1];
-      expect(passError).to.contain('Password required');
-    });
+    cy.get('.error')
+      .eq(1)
+      .should('contain.text', 'Password required');
   });
 
   it('header - should not be present in mobile', () => {
