@@ -1,13 +1,17 @@
+<h3 class="login-header">Welcome to Login!</h3>
+
 <form class="login-form" [formGroup]="login">
     <input name="user" formControlName="user" placeholder="user"/>
-    <span class="error" *ngIf="login.get('user').invalid">User required</span>
+    <div class="error" *ngIf="login.get('user').invalid">User required</div>
 
     <input name="password" formControlName="password" placeholder="password"/>
-    <span class="error" *ngIf="login.get('password').invalid">Password required</span>
+    <div class="error" *ngIf="login.get('password').invalid">Password required</div>
+
+
+    <div *ngIf="error" class="login-error">
+        <span style="color: red">{{error}}</span>
+    </div>
 
     <button class="submit-btn" (click)="submit()">Submit</button>
 </form>
 
-<div *ngIf="error" class="login-error">
-    <span style="color: red">{{error}}</span>
-</div>

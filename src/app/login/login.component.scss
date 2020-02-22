@@ -1,10 +1,21 @@
-.login-form {
-	input {
-		display: block;
-		margin: 0.5rem 0;
-	}
+.login-header {
+  @media (max-width: 1000px) {
+    display: none;
+  }
 
-	.ng-invalid {
-		border: 1px solid red;
+	@media (max-width: 1366px) {
+		font-size: 12px;
+		color: blue;
 	}
+}
+
+.login-form {
+  input {
+    display: block;
+    margin: 0.5rem 0;
+  }
+
+  .ng-invalid {
+    border: 1px solid red;
+  }
 }

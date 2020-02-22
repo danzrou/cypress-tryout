@@ -1,4 +1,5 @@
 import {
+  getHeader,
   getLoginError,
   getPassField,
   getSubmitBtn,
@@ -45,5 +46,15 @@ describe('login', () => {
       const passError = el.get()[1];
       expect(passError).to.contain('Password required');
     });
+  });
+
+  it('header - should not be present in mobile', () => {
+    cy.viewport('iphone-5');
+    getHeader().should('not.be.visible');
+  });
+
+  it('header - should have font size 12px in 1366', () => {
+    cy.viewport(1366, 768);
+    getHeader().should('have.css', { 'font-size': '12px', color: 'blue' });
   });
 });
