@@ -29,24 +29,7 @@
 declare namespace Cypress {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   interface Chainable<Subject> {
-    google(): Chainable<Window>;
-    navigate(pageName: string): void;
   }
 }
 
-/**
- * Goes to google site
- */
-Cypress.Commands.add('google', () => cy.visit('https://google.com'));
-
-/**
- * Navigates to page with pageName
- */
-Cypress.Commands.add('navigate', pageName => {
-  // Find navigation menu item
-  // Click on it
-  cy.visit(`/${pageName}`);
-});
-
-// Convert this to a module instead of script (allows import/export)
 export {};
