@@ -15,7 +15,11 @@
     margin: 0.5rem 0;
   }
 
-  .ng-invalid {
+  .ng-invalid.ng-dirty {
     border: 1px solid red;
   }
+
+	.login-error {
+		color: red;
+	}
 }

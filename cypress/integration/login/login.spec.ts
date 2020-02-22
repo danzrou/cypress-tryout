@@ -34,20 +34,39 @@ describe('login', () => {
     });
   });
 
-  it('form validation - should show error when field is empty', () => {
-    getUserField().type('user');
-    getUserField().clear();
-    cy.get('.error')
-      .first()
-      .should('contain.text', 'User required');
+  describe('form validation', () => {
+    it('form init - submit should be disabled', () => {
+      cy.get('.submit-btn').should('be.disabled');
+    });
 
-    getPassField().type('pass');
-    getPassField().clear();
-    getPassField().should('have.class', 'ng-invalid');
+    it('user input - mandatory', () => {
+      getUserField().type('user');
+      getUserField().clear();
+      getUserField()
+        .should('have.class', 'ng-invalid')
+        .should('have.class', 'ng-dirty')
+        .should('have.css', { border: '1px solid red' });
 
-    cy.get('.error')
-      .eq(1)
-      .should('contain.text', 'Password required');
+      cy.get('.error')
+        .first()
+        .should('contain.text', 'User required');
+
+      cy.get('.submit-btn').should('be.disabled');
+    });
+
+    it('password - mandatory', () => {
+      getPassField().type('pass');
+      getPassField().clear();
+      getPassField()
+        .should('have.class', 'ng-invalid')
+        .should('have.css', { border: '1px solid red' });
+
+      cy.get('.error')
+        .eq(1)
+        .should('contain.text', 'Password required');
+
+      cy.get('.submit-btn').should('be.disabled');
+    });
   });
 
   it('header - should not be present in mobile', () => {
