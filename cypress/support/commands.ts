@@ -9,9 +9,11 @@ Cypress.Commands.add('login', (user: string, pass: string) => {
 // in https://github.com/cypress-io/add-cypress-custom-command-in-typescript
 // add new command to the existing Cypress interface
 // tslint:disable-next-line no-namespace
-declare namespace Cypress {
-  // tslint:disable-next-line interface-name
-  interface Chainable {
-    login(user: string, pass: string): void;
+declare global {
+  namespace Cypress {
+    // tslint:disable-next-line interface-name
+    interface Chainable {
+      login(user: string, pass: string): void;
+    }
   }
 }
