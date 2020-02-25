@@ -1,7 +1,14 @@
 import { getDialog, getDialogBtn, getDialogGreeting, getSelect } from '../../support/home/home.po';
 
 describe('home', () => {
-  beforeEach(() => cy.visit('home'));
+  beforeEach(() => {
+    cy.login('user', '123');
+    cy.visit('home');
+  });
+
+  it('should navigate', () => {
+    cy.url().should('contain', 'home');
+  });
 
   describe('select', () => {
     it('should open menu', () => {
