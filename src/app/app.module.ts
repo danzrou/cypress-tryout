@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SmpButtonModule, SmpDialogModule, SmpInputModule, SmpOverlayModule } from '@siemplify/ui';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthGuard } from './core/auth.guard';
 import { LoginComponent } from './login/login.component';
 
 @NgModule({
@@ -19,6 +20,7 @@ import { LoginComponent } from './login/login.component';
     SmpOverlayModule.forRoot(),
     SmpDialogModule.forRoot()
   ],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

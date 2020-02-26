@@ -1,35 +1,19 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This is will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+// add a custom command cy.foo()
+import { fakeLogin } from './core/login.helpers';
 
-// Must be declared global to be detected by typescript (allows import/export)
-// eslint-disable @typescript/interface-name
-declare namespace Cypress {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  interface Chainable<Subject> {
+Cypress.Commands.add('login', (user: string, pass: string) => {
+  fakeLogin(user, pass);
+});
+
+// see more example of adding custom commands to Cypress TS interface
+// in https://github.com/cypress-io/add-cypress-custom-command-in-typescript
+// add new command to the existing Cypress interface
+// tslint:disable-next-line no-namespace
+declare global {
+  namespace Cypress {
+    // tslint:disable-next-line interface-name
+    interface Chainable {
+      login(user: string, pass: string): void;
+    }
   }
 }
-
-export {};
