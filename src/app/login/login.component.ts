@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
     this.error = null;
     const { user, password } = this.login.getRawValue();
     if (user === 'user' && password === '123') {
-      window['cyTesting'] = { creds: { user, pass: password } };
-      this.router.navigate(['home']);
+      sessionStorage.setItem('session', JSON.stringify({ user, pass: password }));
+      setTimeout(() => this.router.navigate(['home']));
     } else {
       this.error = 'User or password are incorrect';
     }
