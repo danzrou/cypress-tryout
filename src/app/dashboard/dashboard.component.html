@@ -1,0 +1,9 @@
+<smp-spinner *ngIf="isLoading$ | async"></smp-spinner>
+
+<button smpButton #smpPopoverRef="smpPopover" [smpPopover]="dashboardMenuPopoverTpl" smpPopoverPosition="bottom" >Dashboard Menu</button>
+
+<ng-template #dashboardMenuPopoverTpl>
+  <ul>
+    <li (click)="navigateToHome(); smpPopoverRef.hide()"> Go to Home!</li>
+  </ul>
+</ng-template>

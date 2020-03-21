@@ -1,0 +1,15 @@
+ul {
+  list-style: none;
+  padding-block-start: 10px;
+  padding-block-end: 10px;
+  padding-inline-start: 10px;
+  padding-inline-end: 10px;
+
+  li {
+    cursor: pointer;
+    color: whitesmoke;
+    &:hover {
+      color: skyblue;
+    }
+  }
+}
