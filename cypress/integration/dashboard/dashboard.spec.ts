@@ -26,7 +26,9 @@ describe('DashboardModule', () => {
 
   it('should navigate to "/home" when "Go to Home" is clicked', () => {
     cy.get('button[smpButton]').click()
-      .get('smp-popover').contains('Go to Home').click();
-    cy.on('url:changed', () => cy.url().should('contain', 'home'));
+      .get('smp-popover').contains('Go to Home').click()
+      .get('smp-spinner').then($smpSpinner =>
+        $smpSpinner.on('remove', () => cy.url().should('contain', 'home'))
+      );
   });
 });
